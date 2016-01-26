@@ -1,8 +1,13 @@
 require File.expand_path(File.dirname(__FILE__))+"/Person.rb"
 
 class Jedi < Person
-  def initialize(name) 
-    @name = name 
+  def initialize(name=nil) 
+    if name != nil
+      @name = name 
+    else 
+      randomize_name
+    end
+    
     @force = 200+rand(19800)
     @isMaster = false 
     @isJediCouncil = false
@@ -49,5 +54,19 @@ class Jedi < Person
     end
     
     str += @name+" "+(" "*(30-str.size))+"with force "+@force.to_s
+  end
+  
+  private
+  
+  def randomize_name
+    first_name = ['Aaron', 'Byron', 'Ceylon', 'Dervos', 'Anna', 'Syphia', 'Ergoton', 'Malvis', 'Wekkon', 'Vittas',
+                    'Pleyos', 'Qequos', 'Zevra', 'Olgris', 'Prapronos', 'Kakanos']
+    second_name = ['Mat', 'Zat', 'Rat', 'Wes', 'Vzyt', 'Lel', 'Sky', 'Deat', 'Wolt', 'Ravan', 'Star', 'Moon', 'Totos', 
+                    'Qyuv', 'Ares', 'Taur', 'Ion']
+                    
+    third_name = ['walker', 'zyros', 'alva', 'orys', 'uios', 'okron', 'walker', 'killer', 'destroyer', 'willer', 'ustin',
+                    'fall', 'meton', 'rygos']
+                    
+    @name = first_name.sample+" "+second_name.sample+third_name.sample
   end
 end
